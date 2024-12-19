@@ -169,15 +169,16 @@ def change_contact(args, book: AddressBook):
         return "There is no such phone in this contact"
 
 @input_error
-def add_day_of_birthday (args, book: AddressBook):
+def add_day_of_birthday(args, book: AddressBook):
     name, birthday = args
-    message = f"Birthday  added to record {record}."
     record = book.find(name)
     if record is None:
         return "There is no contact with this name"
     if record.birthday is None:
         record.add_birthday(birthday)
+        message = f"Birthday added to record {name}."
         return message
+    return "Birthday already exists for this contact."
 
 @input_error
 def show_day_of_birthday (args, book: AddressBook):
